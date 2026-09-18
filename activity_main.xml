@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent" android:background="#080A0E">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+android:orientation="vertical" android:padding="16dp" android:layoutDirection="rtl">
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="مذاكرجي قانون PRO" android:textColor="#FFFFFF" android:textSize="29sp" android:textStyle="bold"/>
+<TextView android:id="@+id/subtitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="مساعدك للمحاضرات والمراجعة — Offline" android:textColor="#9FA9B7" android:paddingBottom="14dp"/>
+
+<com.google.android.material.button.MaterialButton android:id="@+id/pickAudio"
+android:layout_width="match_parent" android:layout_height="54dp" android:text="🎙️ اختيار محاضرة"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/pickModel"
+android:layout_width="match_parent" android:layout_height="54dp" android:text="🧠 اختيار موديل GGUF محلي"/>
+
+<TextView android:id="@+id/fileInfo" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="لم يتم اختيار محاضرة" android:textColor="#DCE3EB" android:padding="8dp"/>
+<TextView android:id="@+id/modelInfo" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="LLM: غير محمل" android:textColor="#DCE3EB" android:padding="8dp"/>
+
+<com.google.android.material.button.MaterialButton android:id="@+id/start"
+android:layout_width="match_parent" android:layout_height="56dp" android:text="▶ ابدأ جلسة المذاكرة"/>
+
+<ProgressBar android:id="@+id/progress" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:visibility="gone"/>
+<TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="جاهز" android:textColor="#7DE2A8" android:padding="8dp"/>
+
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="أدوات المذاكرة" android:textColor="#FFFFFF" android:textSize="21sp" android:textStyle="bold"
+android:paddingTop="16dp"/>
+
+<com.google.android.material.button.MaterialButton android:id="@+id/summary"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="🧠 ملخص + أهم النقاط"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/explain"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="💡 اشرحلي كأني لسه ببدأ"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/definitions"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="📌 تعريفات + قواعد + استثناءات"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/essay"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="✍️ أسئلة مقالية صعبة"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/mcq"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="📝 MCQ امتحانات"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/cases"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="⚖️ حالات عملية"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/mindmap"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="🗺️ خريطة ذهنية"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/flash"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="🃏 بطاقات مراجعة"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/quiz"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="🎯 اختبر نفسك"/>
+<com.google.android.material.button.MaterialButton android:id="@+id/export"
+android:layout_width="match_parent" android:layout_height="50dp" android:text="📤 مشاركة النتيجة"/>
+
+<TextView android:id="@+id/outputTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="الناتج" android:textColor="#FFFFFF" android:textSize="21sp" android:textStyle="bold" android:paddingTop="18dp"/>
+<EditText android:id="@+id/output" android:layout_width="match_parent" android:layout_height="600dp"
+android:gravity="top|right" android:inputType="textMultiLine" android:textColor="#FFFFFF"
+android:textColorHint="#697381" android:hint="ابدأ بمحاضرة..." android:background="#141821" android:padding="14dp"/>
+
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="كل التحليل يتم على الجهاز. لا حسابات ولا API. موديل GGUF تختاره مرة وتستخدمه محليًا."
+android:textColor="#7F8A99" android:textSize="12sp" android:paddingTop="12dp"/>
+</LinearLayout></ScrollView>
