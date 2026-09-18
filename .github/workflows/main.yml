@@ -11,21 +11,25 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      # 1. تحميل المشروع
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 2. Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
 
+      # 3. Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
         with:
           packages: ''
           cmdline-tools-version: 12266719
 
+      # 4. تثبيت أدوات Android المطلوبة
       - name: Install Android SDK packages
         run: |
           sdkmanager --install \
@@ -34,14 +38,46 @@ jobs:
             "build-tools;35.0.0" \
             "ndk;27.2.12479018"
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: Build APK
-        run: ./gradlew assembleDebug --stacktrace
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      # 5. تثبيت Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
         with:
-          name: LawOfflineAI-APK
-          path: app/build/outputs/apk/debug/*.apk
+          gradle-version: '8.9'
+
+      # 6. التأكد من وجود ملفات المشروع
+      - name: Check project
+        run: |
+          echo "=== Project files ==="
+          ls -la
+          echo "=== App folder ==="
+          ls -la app
+          echo "=== Gradle files ==="
+          find . -maxdepth 2 -type f -name "*.gradle" -o -name "*.gradle.kts" -print
+
+      # 7. تجهيز Whisper
+      - name: Prepare Whisper model
+        run: |
+          if [ -f scripts/download_whisper_model.sh ]; then
+            chmod +x scripts/download_whisper_model.sh
+            ./scripts/download_whisper_model.sh
+          else
+            echo "Whisper download script not found - continuing"
+          fi
+
+      # 8. تجهيز llama.cpp
+      - name: Prepare llama.cpp
+        run: |
+          if [ -f scripts/prepare_llama.sh ]; then
+            chmod +x scripts/prepare_llama.sh
+            ./scripts/prepare_llama.sh
+          else
+            echo "llama.cpp preparation script not found - continuing"
+          fi
+
+      # 9. بناء APK
+      - name: Build APK
+        run: |
+          gradle assembleDebug --stacktrace
+
+      # 10. رفع APK كـ Artifact
+      - name: Upload
